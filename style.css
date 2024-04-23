@@ -5,7 +5,7 @@
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   /* DEBUGGING */
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 h1 {
@@ -18,9 +18,17 @@ div.container {
   border: 2px solid gray;
 }
 
-div#display {
+div#displayContainer {
   height: 150px;
   border-bottom: 2px solid gray;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+}
+
+div#displayText {
+  font-size: 4rem;
 }
 
 div.column {
