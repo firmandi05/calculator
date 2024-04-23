@@ -1,9 +1,34 @@
 let firstNumber
 let secondNumber
 let operator
-let displayValue
+let displayValue = '';
 
-const displayDiv = document.querySelector('div#displayText');
+const numberDiv = document.querySelectorAll('div.number');
+numberDiv.forEach((button) => {
+  button.addEventListener('click', () => {
+    displayValue += button.getAttribute('id')
+    updateDisplay();
+  });
+});
+
+const operatorDiv = document.querySelectorAll('.operator');
+operatorDiv.forEach((button) => {
+  button.addEventListener('click', () => {
+    displayValue += button.textContent;
+    updateDisplay();
+  });
+});
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', () => {
+  displayValue = '';
+  updateDisplay();
+});
+
+
+function updateDisplay() {
+  document.querySelector('#displayText').innerText = displayValue;
+}
 
 function add(...nums) {
   const result = nums.reduce((acc, num) => {
