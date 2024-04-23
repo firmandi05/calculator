@@ -3,7 +3,7 @@ let secondNumber
 let operator
 let displayValue
 
-
+const displayDiv = document.querySelector('div#displayText');
 
 function add(...nums) {
   const result = nums.reduce((acc, num) => {
