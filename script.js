@@ -1,6 +1,9 @@
 let firstNumber
 let secondNumber
 let operator
+let displayValue
+
+
 
 function add(...nums) {
   const result = nums.reduce((acc, num) => {

@@ -38,4 +38,15 @@ div.row {
   border: 1px solid gray;
   width: 115px;
   height: 115px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
 }
+
+div.row:hover {
+  background-color: rgb(190, 190, 190);
+  color: rgb(255, 255, 255);
+}
+
+div.row:active {
+  background-color: black;
+} 
