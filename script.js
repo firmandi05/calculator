@@ -14,8 +14,11 @@ numberDiv.forEach((button) => {
 const operatorDiv = document.querySelectorAll('.operator');
 operatorDiv.forEach((button) => {
   button.addEventListener('click', () => {
-    displayValue += button.textContent;
-    updateDisplay();
+    const lastChar = displayValue[displayValue.length -1];
+    if(!isNaN(parseInt(lastChar))) {
+      displayValue += button.textContent;
+      updateDisplay();
+    };
   });
 });
 
@@ -24,7 +27,6 @@ clearButton.addEventListener('click', () => {
   displayValue = '';
   updateDisplay();
 });
-
 
 function updateDisplay() {
   document.querySelector('#displayText').innerText = displayValue;
