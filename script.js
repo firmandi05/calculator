@@ -16,6 +16,12 @@ operatorDiv.forEach((button) => {
   button.addEventListener('click', () => {
     const lastChar = displayValue[displayValue.length -1];
     if(!isNaN(parseInt(lastChar))) {
+      if(displayValue.includes('+') || displayValue.includes('-') || displayValue.includes('/') || displayValue.includes('X')) {
+        parseDisplayValue();
+        let result = operate(firstNumber, secondNumber, operator);
+        displayValue = result.toString();
+      }
+
       displayValue += button.textContent;
       updateDisplay();
     };
