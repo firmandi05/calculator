@@ -16,7 +16,7 @@ operatorDiv.forEach((button) => {
   button.addEventListener('click', () => {
     const lastChar = displayValue[displayValue.length -1];
     if(!isNaN(parseInt(lastChar))) {
-      displayValue += ` ${button.textContent} `;
+      displayValue += button.textContent;
       updateDisplay();
     };
   });
@@ -30,8 +30,9 @@ clearButton.addEventListener('click', () => {
 
 const calculateButton = document.querySelector('#operate');
 calculateButton.addEventListener('click', () => {
+  parseDisplayValue();
   let result = operate(firstNumber, secondNumber, operator);
-  displayValue = result;
+  displayValue = result.toString();
   updateDisplay();
 })
 
@@ -52,9 +53,7 @@ function parseDisplayValue() {
 }
 
 function updateDisplay() {
-  parseDisplayValue();
   document.querySelector('#displayText').innerText = displayValue;
-  console.log(firstNumber, operator, secondNumber);
 }
 
 function add(...nums) {
