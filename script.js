@@ -28,8 +28,26 @@ clearButton.addEventListener('click', () => {
   updateDisplay();
 });
 
+function parseDisplayValue() {
+  let operatorIndex = -1;
+  for(let i = 0; i < displayValue.length; i++){
+    if(displayValue[i] === '+' || displayValue[i] === 'X' || displayValue[i] === "/" || displayValue[i] === '-'){
+      operatorIndex = i;
+      break;
+    };
+  };
+
+  if(operatorIndex !== -1){
+    firstNumber = displayValue.substring(0, operatorIndex);
+    secondNumber = displayValue.substring(operatorIndex + 1);
+    operator = displayValue[operatorIndex];
+  };
+}
+
 function updateDisplay() {
+  parseDisplayValue();
   document.querySelector('#displayText').innerText = displayValue;
+  console.log(firstNumber, operator, secondNumber);
 }
 
 function add(...nums) {
