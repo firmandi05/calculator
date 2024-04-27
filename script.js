@@ -116,8 +116,12 @@ function operate(num1, num2, operator) {
     case '-':
       return subtract(parseFloat(num1), parseFloat(num2));
     case 'X':
-      return multiply(parseFloat(num1),parseFloat(num2));
+        return multiply(parseFloat(num1),parseFloat(num2));
     case '/':
-      return divide(parseFloat(num1), parseFloat(num2));
+      if(parseFloat(num2) === 0){
+        return 'NOPE';
+      } else {
+        return divide(parseFloat(num1), parseFloat(num2));
+      }
   };
 };
