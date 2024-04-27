@@ -16,7 +16,7 @@ operatorDiv.forEach((button) => {
   button.addEventListener('click', () => {
     const lastChar = displayValue[displayValue.length -1];
     if(!isNaN(parseInt(lastChar))) {
-      displayValue += button.textContent;
+      displayValue += ` ${button.textContent} `;
       updateDisplay();
     };
   });
@@ -28,6 +28,13 @@ clearButton.addEventListener('click', () => {
   updateDisplay();
 });
 
+const calculateButton = document.querySelector('#operate');
+calculateButton.addEventListener('click', () => {
+  let result = operate(firstNumber, secondNumber, operator);
+  displayValue = result;
+  updateDisplay();
+})
+
 function parseDisplayValue() {
   let operatorIndex = -1;
   for(let i = 0; i < displayValue.length; i++){
@@ -38,8 +45,8 @@ function parseDisplayValue() {
   };
 
   if(operatorIndex !== -1){
-    firstNumber = displayValue.substring(0, operatorIndex);
-    secondNumber = displayValue.substring(operatorIndex + 1);
+    firstNumber = displayValue.substring(0, operatorIndex).trim();
+    secondNumber = displayValue.substring(operatorIndex + 1).trim();
     operator = displayValue[operatorIndex];
   };
 }
@@ -81,12 +88,12 @@ function divide(...nums) {
 function operate(num1, num2, operator) {
   switch(operator) {
     case '+':
-      return add(num1, num2);
+      return add(parseFloat(num1), parseFloat(num2));
     case '-':
-      return subtract(num1, num2);
-    case 'x':
-      return multiply (num1,num2);
+      return subtract(parseFloat(num1), parseFloat(num2));
+    case 'X':
+      return multiply(parseFloat(num1),parseFloat(num2));
     case '/':
-      return divide(num1, num2);
+      return divide(parseFloat(num1), parseFloat(num2));
   };
 };
