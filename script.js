@@ -25,6 +25,12 @@ operatorDiv.forEach((button) => {
       displayValue += button.textContent;
       updateDisplay();
     };
+
+    if(isNaN(lastChar)){
+      displayValue = displayValue.slice(0, -1);
+      displayValue += button.textContent;
+      updateDisplay();
+    }
   });
 });
 
