@@ -15,6 +15,7 @@ const operatorDiv = document.querySelectorAll('.operator');
 operatorDiv.forEach((button) => {
   button.addEventListener('click', () => {
     const lastChar = displayValue[displayValue.length -1];
+
     if(!isNaN(parseInt(lastChar))) {
       if(displayValue.includes('+') || displayValue.includes('-') || displayValue.includes('/') || displayValue.includes('X')) {
         parseDisplayValue();
@@ -37,18 +38,27 @@ operatorDiv.forEach((button) => {
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', () => {
   displayValue = '';
-  firstNumber = undefined;
-  secondNumber = undefined;
-  operator = undefined;
+  firstNumber = '';
+  secondNumber = '';
+  operator = '';
   updateDisplay();
 });
 
 const calculateButton = document.querySelector('#operate');
 calculateButton.addEventListener('click', () => {
   parseDisplayValue();
-  let result = operate(firstNumber, secondNumber, operator);
-  displayValue = result.toString();
-  updateDisplay();
+  console.log(firstNumber,secondNumber,operator);
+  if(firstNumber !== '' && secondNumber !== '' && operator !== ''){
+    let result = operate(firstNumber, secondNumber, operator);
+    displayValue = result.toString();
+    updateDisplay();
+    firstNumber = '';
+    secondNumber = '';
+    operator = '';
+  } else {
+    return
+  }
+  console.log(firstNumber,secondNumber,operator)
 })
 
 function parseDisplayValue() {
@@ -69,35 +79,34 @@ function parseDisplayValue() {
 
 function updateDisplay() {
   document.querySelector('#displayText').innerText = displayValue;
-  console.log()
 }
 
 function add(...nums) {
   const result = nums.reduce((acc, num) => {
     return acc + num
   })
-  return result
+  return +result.toFixed(2)
 }
 
 function subtract(...nums) {
   const result = nums.reduce((acc, num) => {
     return acc - num
   })
-  return result
+  return +result.toFixed(2)
 }
 
 function multiply(...nums) {
   const result = nums.reduce((acc, num) => {
     return acc * num
   })
-  return result
+  return +result.toFixed(2)
 }
 
 function divide(...nums) {
   const result = nums.reduce((acc, num) => {
     return acc / num
   })
-  return result
+  return +result.toFixed(2)
 }
 
 function operate(num1, num2, operator) {
