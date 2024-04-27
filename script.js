@@ -37,6 +37,9 @@ operatorDiv.forEach((button) => {
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', () => {
   displayValue = '';
+  firstNumber = undefined;
+  secondNumber = undefined;
+  operator = undefined;
   updateDisplay();
 });
 
@@ -66,6 +69,7 @@ function parseDisplayValue() {
 
 function updateDisplay() {
   document.querySelector('#displayText').innerText = displayValue;
+  console.log()
 }
 
 function add(...nums) {
