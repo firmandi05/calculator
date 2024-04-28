@@ -67,6 +67,56 @@ backspaceButton.addEventListener('click', () => {
   updateDisplay();
 })
 
+// Handle keyboard support
+addEventListener('keydown', (event) => {
+  const key = event.key
+
+  // Handle number input
+  if(!isNaN(parseInt(key))){
+    displayValue += key;
+    updateDisplay();
+  };
+
+  // Handle operator input
+  if(['+','-','/','X'].includes(key)){
+    const lastChar = displayValue[displayValue.length -1];
+    if(!isNaN(lastChar)){
+      if(displayValue.includes('+') || displayValue.includes('-') || displayValue.includes('/') || displayValue.includes('X')){
+        parseDisplayValue();
+        displayValue = operate(firstNumber, secondNumber, operator).toString();
+      }
+      displayValue += key;
+      updateDisplay();
+    };
+    if(isNaN(lastChar)){
+      displayValue = displayValue.slice(0, -1);
+      displayValue += key;
+      updateDisplay();
+    };
+  };
+
+  // Handle Backspace input
+  if(key === 'Backspace'){
+    displayValue = displayValue.slice(0, -1);
+    updateDisplay();
+  };
+
+  // Handle Enter input
+  if(key === 'Enter'){
+    parseDisplayValue();
+    if(firstNumber !== '' && secondNumber !== '' && operator !== ''){
+      let result = operate(firstNumber, secondNumber, operator);
+      displayValue = result.toString();
+      updateDisplay();
+      firstNumber = '';
+      secondNumber = '';
+      operator = '';
+    } else {
+      return
+    }   
+  }
+});
+
 function parseDisplayValue() {
   let operatorIndex = -1;
   for(let i = 0; i < displayValue.length; i++){
