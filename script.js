@@ -103,6 +103,15 @@ addEventListener('keydown', (event) => {
     };
   };
 
+  // handle dot input
+  if(key === '.'){
+    if(!displayValue.includes('.')){
+      displayValue += '.'
+      updateDisplay();
+    };
+  };
+  
+
   // Handle Backspace input
   if(key === 'Backspace'){
     displayValue = displayValue.slice(0, -1);
