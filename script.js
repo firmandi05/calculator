@@ -67,6 +67,14 @@ backspaceButton.addEventListener('click', () => {
   updateDisplay();
 })
 
+const dotButton = document.querySelector('#dot');
+dotButton.addEventListener('click', () => {
+  if(!displayValue.includes('.')){
+    displayValue += dotButton.textContent
+    updateDisplay();
+  }
+})
+
 // Handle keyboard support
 addEventListener('keydown', (event) => {
   const key = event.key
