@@ -61,6 +61,12 @@ calculateButton.addEventListener('click', () => {
   console.log(firstNumber,secondNumber,operator)
 })
 
+const backspaceButton = document.querySelector('#backspace');
+backspaceButton.addEventListener('click', () => {
+  displayValue = displayValue.slice(0, -1);
+  updateDisplay();
+})
+
 function parseDisplayValue() {
   let operatorIndex = -1;
   for(let i = 0; i < displayValue.length; i++){
